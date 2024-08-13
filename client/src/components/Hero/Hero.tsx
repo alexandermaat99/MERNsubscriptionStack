@@ -1,13 +1,11 @@
-import { Navbar, NavItem, NavLink } from "react-bootstrap";
+import styled from "styled-components";
 
-const Nav = () => {
-  return (
-    <Navbar>
-      <NavItem>
-        <NavLink>Home</NavLink>
-      </NavItem>
-    </Navbar>
-  );
+const HeroComponent = styled.header`
+  background-color: pink;
+`;
+
+const Hero = () => {
+  return <HeroComponent>asdasd</HeroComponent>;
 };
 
-export default Nav;
+export default Hero;
