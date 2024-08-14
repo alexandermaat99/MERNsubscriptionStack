@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import { Container } from "react-bootstrap";
+import { Container, Modal } from "react-bootstrap";
+import ModalComponent from "../Modal/Modal";
 
 const HeroComponent = styled.header`
   height: 60vh;
@@ -34,6 +35,7 @@ const Hero = () => {
         <HeaderContainer>
           <Heading>Hello World</Heading>
           <SubHeading>Subheading</SubHeading>
+          <ModalComponent />
         </HeaderContainer>
       </Container>
     </HeroComponent>
