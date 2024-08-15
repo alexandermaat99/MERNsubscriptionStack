@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Container, Modal } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import ModalComponent from "../Modal/Modal";
 
 const HeroComponent = styled.header`
@@ -35,7 +35,8 @@ const Hero = () => {
         <HeaderContainer>
           <Heading>Hello World</Heading>
           <SubHeading>Subheading</SubHeading>
-          <ModalComponent />
+          <ModalComponent text="Signup" variant="primary" />
+          <ModalComponent text="Login" variant="danger" />
         </HeaderContainer>
       </Container>
     </HeroComponent>
