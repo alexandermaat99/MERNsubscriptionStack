@@ -31,4 +31,4 @@ router.post(
   }
 );
 
-export default route;
+export default router;
