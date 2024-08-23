@@ -5,13 +5,22 @@ import dotnet from "dotenv";
 
 dotnet.config();
 
-const app = express();
+mongoose
+  .connect(process.env.MONGO_URI as string)
+  .then(() => {
+    console.log("Connected to MongoDB");
 
-app.use(express.json());
-app.use("/auth", authRoutes);
+    const app = express();
 
-app.get("/", (req, res) => res.send("welcome to the server"));
+    app.use(express.json());
+    app.use("/auth", authRoutes);
+    // once connected to mongo, want to connect to the server
 
-app.listen(8080, () => {
-  console.log("Server is running on port 8080");
-});
+    app.listen(8080, () => {
+      console.log("Server is running on port 8080");
+    });
+  })
+  .catch((error) => {
+    console.log({ error });
+    throw new Error(error);
+  });
