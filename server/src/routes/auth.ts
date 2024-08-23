@@ -28,10 +28,14 @@ router.post(
 
     const { email, password } = req.body;
 
-    const user = await User.findOne({ email });
+    await User.create({
+      email,
+      password,
+    });
+    // const user = await User.findOne({ email });
     // this is saying find a user with the email that was passed in from the request, the const above
     // if there is no existing email, user will be null, if there is an email, user will be the user object
-    res.json({ user });
+    res.send("user");
     // this will return the user object
     // if the user object is null, we want to create a new user
     // if the user object is not null, we want to return an error message
