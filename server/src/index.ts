@@ -1,7 +1,16 @@
 import express from "express";
 import authRoutes from "./routes/auth";
+import mongoose from "mongoose";
+import dotnet from "dotenv";
 
 const app = express();
+
+
+mongoose.connect(
+  process.env.MONGO_URI
+):
+
+dotnenv.congfig();
 
 app.use(express.json());
 app.use("/auth", authRoutes);
