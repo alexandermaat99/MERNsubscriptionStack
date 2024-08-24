@@ -2,6 +2,7 @@ import express from "express";
 import authRoutes from "./routes/auth";
 import mongoose from "mongoose";
 import dotnet from "dotenv";
+import cors from "cors";
 
 dotnet.config();
 
@@ -12,7 +13,15 @@ mongoose
 
     const app = express();
 
+    app.use(
+      cors({
+        origin: "http://localhost:3000", // Frontend URL
+        credentials: true, // If you're using cookies
+      })
+    );
+
     app.use(express.json());
+
     app.use("/auth", authRoutes);
     // once connected to mongo, want to connect to the server
 
