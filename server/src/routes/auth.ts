@@ -58,17 +58,31 @@ router.post(
       password: hashedPassword,
     });
 
-    //returned token will be json web token
-
-    //payload amd signature
-
-    // this is saying find a user with the email that was passed in from the request, the const above
-    // if there is no existing email, user will be null, if there is an email, user will be the user object
-    res.send(user);
-    // this will return the user object
-    // if the user object is null, we want to create a new user
-    // if the user object is not null, we want to return an error message
+    const token = JWT.sign(
+      { email: newUser.email },
+      process.env.JWT_SECRET as string,
+      {
+        expiresIn: "1h",
+      }
+    );
+    res.json(
+      errors: [],
+      data: {
+        token,
+        email: newUser
+      }
+    );
   }
 );
+
+//returned token will be json web token
+
+//payload amd signature
+
+// this is saying find a user with the email that was passed in from the request, the const above
+// if there is no existing email, user will be null, if there is an email, user will be the user object
+// this will return the user object
+// if the user object is null, we want to create a new user
+// if the user object is not null, we want to return an error message
 
 export default router;
