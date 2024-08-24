@@ -46,6 +46,17 @@ router.post(
         // if we don't have a user, we will return the user object
       });
     }
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+    //the 10 is the number of rounds of hashing
+    // the higher the number, the more secure the password
+    // the lower the number, the faster the hashing
+    // 10 is a good balance
+    const newUser = await User.create({
+      email,
+      password: hashedPassword,
+    });
+
     // this is saying find a user with the email that was passed in from the request, the const above
     // if there is no existing email, user will be null, if there is an email, user will be the user object
     res.send(user);
