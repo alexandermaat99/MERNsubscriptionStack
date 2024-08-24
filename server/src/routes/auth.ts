@@ -1,6 +1,7 @@
 import express from "express";
 import { body, validationResult } from "express-validator";
 import User from "../models/user";
+import bcrypt from "bcryptjs";
 // body checks the request body, validation results are stored in validationResult
 
 const router = express.Router();
@@ -22,20 +23,32 @@ router.post(
           msg: error.msg,
         };
       });
-      return res.json({ errors });
+      return res.json({ errors, data: null });
+      // if the array is empty, we will return the data
+      // if the array is not empty, we will map through the array and return the error message
     }
     // if the array is not empty, we will map through the array and return the error message
 
     const { email, password } = req.body;
 
-    await User.create({
-      email,
-      password,
-    });
-    // const user = await User.findOne({ email });
+    const user = await User.findOne({ email });
+
+    //if we get back a user, return an error saying we already have a user with that email
+    if (user) {
+      return res.json({
+        errors: [
+          {
+            msg: "This email is associated with another account",
+          },
+        ],
+        data: null,
+        // if we have a user, we will return an error message
+        // if we don't have a user, we will return the user object
+      });
+    }
     // this is saying find a user with the email that was passed in from the request, the const above
     // if there is no existing email, user will be null, if there is an email, user will be the user object
-    res.send("user");
+    res.send(user);
     // this will return the user object
     // if the user object is null, we want to create a new user
     // if the user object is not null, we want to return an error message
