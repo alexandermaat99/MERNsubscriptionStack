@@ -89,4 +89,55 @@ router.post(
 // if the user object is null, we want to create a new user
 // if the user object is not null, we want to return an error message
 
+router.post("/Login", async (req, res) => {
+  const { email, password } = req.body;
+
+  //validates if a user exists with that particular email in our database
+  const user = await User.findOne({ email });
+
+  if (!user) {
+    return res.json({
+      errors: [
+        {
+          msg: "Invalid credentials",
+        },
+      ],
+      data: null,
+    });
+  }
+
+  // comparing hashed password with the password we're getting back
+  const isMatch = await bcrypt.compare(password, user.password);
+
+  if (!isMatch) {
+    return res.json({
+      errors: [
+        {
+          msg: "Invalid Credentials",
+        },
+      ],
+    });
+  }
+
+  //if all of this works, we return this token that lasts for 1 hour
+  const token = JWT.sign(
+    { email: user.email },
+    process.env.JWT_SECRET as string,
+    {
+      expiresIn: "1h",
+    }
+  );
+
+  return res.json({
+    error: [],
+    data: {
+      token,
+      user: {
+        id: user._id,
+        email: user.email,
+      },
+    },
+  });
+});
+
 export default router;
