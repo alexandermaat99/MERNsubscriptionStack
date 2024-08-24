@@ -65,13 +65,17 @@ router.post(
         expiresIn: "1h",
       }
     );
-    res.json(
+
+    res.json({
       errors: [],
       data: {
         token,
-        email: newUser
-      }
-    );
+        user: {
+          id: newUser._id,
+          email: newUser.email,
+        },
+      },
+    });
   }
 );
 
