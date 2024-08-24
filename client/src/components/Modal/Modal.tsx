@@ -3,7 +3,7 @@ import axios from "axios";
 //use this library to make http requests
 import { useState } from "react";
 import styled from "styled-components";
-import { error } from "console";
+// import { error } from "console";
 
 interface ModalProps {
   text: string;
@@ -74,7 +74,6 @@ const ModalComponent = ({ text, variant, isSignupFlow }: ModalProps) => {
             <InputGroup.Text>Email</InputGroup.Text>
             <FormControl
               type="email"
-              id="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
@@ -84,7 +83,6 @@ const ModalComponent = ({ text, variant, isSignupFlow }: ModalProps) => {
             <InputGroup.Text>Password</InputGroup.Text>
             <FormControl
               type="password"
-              id="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
