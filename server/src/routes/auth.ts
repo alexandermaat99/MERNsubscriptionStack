@@ -2,6 +2,7 @@ import express from "express";
 import { body, validationResult } from "express-validator";
 import User from "../models/user";
 import bcrypt from "bcryptjs";
+import JWT from "jsonwebtoken";
 // body checks the request body, validation results are stored in validationResult
 
 const router = express.Router();
@@ -56,6 +57,10 @@ router.post(
       email,
       password: hashedPassword,
     });
+
+    //returned token will be json web token
+
+    //payload amd signature
 
     // this is saying find a user with the email that was passed in from the request, the const above
     // if there is no existing email, user will be null, if there is an email, user will be the user object
