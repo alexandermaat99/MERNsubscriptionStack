@@ -35,8 +35,8 @@ const Hero = () => {
         <HeaderContainer>
           <Heading>Hello World</Heading>
           <SubHeading>Subheading</SubHeading>
-          <ModalComponent text="Signup" variant="primary" />
-          <ModalComponent text="Login" variant="danger" />
+          <ModalComponent text="Signup" variant="primary" isSignupFlow={true} />
+          <ModalComponent text="Login" variant="danger" isSignupFlow={false} />
         </HeaderContainer>
       </Container>
     </HeroComponent>
