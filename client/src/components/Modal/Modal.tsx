@@ -3,7 +3,7 @@ import axios from "axios";
 //use this library to make http requests
 import { useState } from "react";
 import styled from "styled-components";
-// import { error } from "console";
+import { error } from "console";
 
 interface ModalProps {
   text: string;
@@ -51,6 +51,7 @@ const ModalComponent = ({ text, variant, isSignupFlow }: ModalProps) => {
     }
 
     localStorage.setItem("token", data.data.token);
+    //store token in local storage
   };
 
   return (
