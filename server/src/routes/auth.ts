@@ -30,7 +30,7 @@ router.post(
     }
     // if the array is not empty, we will map through the array and return the error message
 
-    const { email, password } = req.body;
+    // const { email, password } = req.body;
 
     const user = await User.findOne({ email });
 
