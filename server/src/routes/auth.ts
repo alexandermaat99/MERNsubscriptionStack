@@ -48,7 +48,8 @@ router.post(
       });
     }
 
-    const hashedPassword = await bcrypt.hash(password, 10);
+    const hashedPassword = await bcrypt.hash(password, 11);
+
     //the 10 is the number of rounds of hashing
     // the higher the number, the more secure the password
     // the lower the number, the faster the hashing
